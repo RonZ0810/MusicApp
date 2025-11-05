@@ -1,6 +1,5 @@
-﻿namespace MusicApp.Application;
+namespace MusicApp.Application;
 
-public class Class1
-{
+public class Class1 {
 
 }

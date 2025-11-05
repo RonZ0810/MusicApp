@@ -1,6 +1,5 @@
-﻿namespace MusicApp.Infrastructure;
+namespace MusicApp.Infrastructure;
 
-public class Class1
-{
+public class Class1 {
 
 }
