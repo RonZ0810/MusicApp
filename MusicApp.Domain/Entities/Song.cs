@@ -3,19 +3,15 @@ using MusicApp.Domain.Enums;
 namespace MusicApp.Domain.Entities;
 
 public class Song {
-    public Guid Id { get; set; }
-    public string Title { get; set; } = null!;
-    public string FileUrl { get; set; } = null!;
-    public string? CoverImageUrl { get; set; }
-
-    public Genre Genre { get; set; }
-    public DateTime UploadedAt { get; set; }
-
+    public Guid Id { get; init; }
+    public string Title { get; init; } = null!;
+    public string FileUrl { get; init; } = null!;
+    public string? CoverImageUrl { get; init; }
+    public Genre Genre { get; init; }
     // Spotify Integration
-    public Spotify.SongInfo? SongInfo { get; set; }
-
-
+    public string? SpotifyId { get; set; }
     // Relationships
-    public ArtistProfile ArtistProfile { get; set; } = null!;
+    public ArtistProfile ArtistProfile { get; init; } = null!;
+    public Album? Album { get; set; }
 
 }

@@ -4,12 +4,13 @@ namespace MusicApp.Domain.Entities;
 
 public class User {
     public Guid Id { get; init; }
-    public string Email { get; set; } = null!;
-    public string DisplayName { get; set; } = null!;
-    public string Password { get; set; } = null!;
+    public required string Email { get; set; }
+    public required string DisplayName { get; set; }
+    public required string PasswordHash { get; init; }
     public UserRole Role { get; set; }
 
     // Spotify Integration
-    public Spotify.UserInfo? UserInfo { get; set; }
+    public string? SpotifyId { get; set; }
+    public ArtistProfile? ArtistProfile { get; set; }
 
 }
