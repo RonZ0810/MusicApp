@@ -13,10 +13,8 @@ public class Playlist {
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
 
-    // ----- CONSTRUCTOR ----- //
+    // ----- METHODS ----- //
     private Playlist() { }
-
-    // ----- FACTORY ----- //
     public static Playlist Create(string name, User user, string? spotifyId) {
         return new Playlist {
             Id = Guid.NewGuid(),
@@ -27,7 +25,6 @@ public class Playlist {
             CreatedAt = DateTime.UtcNow
         };
     }
-
     public void Update(string? name, ICollection<Song>? songs) {
         bool updated = false;
         if (!string.IsNullOrWhiteSpace(name) && Name != name) {

@@ -16,10 +16,8 @@ public class User {
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
 
-    // ----- CONSTRUCTOR ----- //
+    // ----- METHODS ----- //
     private User() { }
-
-    // ----- FACTORY ----- //
     public static User Create(string email, string displayName, string passwordHash, string? spotifyId, UserRole role = UserRole.Listener) {
         return new User {
             Id = Guid.NewGuid(),
@@ -31,8 +29,6 @@ public class User {
             UpdatedAt = DateTime.UtcNow
         };
     }
-
-    // ----- METHODS ----- //
     public void Update(string? email, string? displayName, string? spotifyId, UserRole? role, ICollection<Playlist>? playlists) {
         bool updated = false;
         if (!string.IsNullOrWhiteSpace(email) && email != Email) {
@@ -58,7 +54,6 @@ public class User {
         if (updated)
             UpdatedAt = DateTime.UtcNow;
     }
-
     public void LinkSpotifyAccount(string spotifyId) {
         if (string.IsNullOrWhiteSpace(spotifyId))
             throw new ArgumentException("Spotify ID cannot be empty.");
