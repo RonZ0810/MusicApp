@@ -13,7 +13,7 @@ public class User {
 
     public ICollection<Playlist> Playlists { get; private set; } = new List<Playlist>();
 
-    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
 
     // ----- CONSTRUCTOR ----- //
@@ -27,18 +27,36 @@ public class User {
             DisplayName = displayName,
             PasswordHash = passwordHash,
             SpotifyId = spotifyId,
-            Role = role
+            Role = role,
+            UpdatedAt = DateTime.UtcNow
         };
     }
 
     // ----- METHODS ----- //
-    public void Update(string? email, string? displayName, string? spotifyId, UserRole? role) {
-        if (!string.IsNullOrWhiteSpace(email)) Email = email;
-        if (!string.IsNullOrWhiteSpace(displayName)) DisplayName = displayName;
-        if (!string.IsNullOrWhiteSpace(spotifyId)) SpotifyId = spotifyId;
-        if (role.HasValue) Role = role.Value;
-
-        UpdatedAt = DateTime.UtcNow;
+    public void Update(string? email, string? displayName, string? spotifyId, UserRole? role, ICollection<Playlist>? playlists) {
+        bool updated = false;
+        if (!string.IsNullOrWhiteSpace(email) && email != Email) {
+            Email = email;
+            updated = true;
+        }
+        if (!string.IsNullOrWhiteSpace(displayName) && displayName != DisplayName) {
+            DisplayName = displayName;
+            updated = true;
+        }
+        if (!string.IsNullOrWhiteSpace(spotifyId) && spotifyId != SpotifyId) {
+            SpotifyId = spotifyId;
+            updated = true;
+        }
+        if (role.HasValue && role.Value != Role) {
+            Role = role.Value;
+            updated = true;
+        }
+        if (playlists != null && !playlists.Select(p => p.Id).ToHashSet().SetEquals(Playlists.Select(p => p.Id))) {
+            Playlists = playlists;
+            updated = true;
+        }
+        if (updated)
+            UpdatedAt = DateTime.UtcNow;
     }
 
     public void LinkSpotifyAccount(string spotifyId) {
