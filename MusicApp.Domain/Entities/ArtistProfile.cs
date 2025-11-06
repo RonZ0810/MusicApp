@@ -9,4 +9,7 @@ public class ArtistProfile {
 
     // Spotify Integration
     public string? SpotifyId { get; set; }
+
+    // Relationships
+    public ICollection<Song> Songs { get; private set; } = new List<Song>();
 }
