@@ -16,6 +16,8 @@ public class Playlist {
     // ----- METHODS ----- //
     private Playlist() { }
     public static Playlist Create(string name, User user, string? spotifyId) {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Playlist name is required");
         return new Playlist {
             Id = Guid.NewGuid(),
             Name = name,
@@ -25,18 +27,26 @@ public class Playlist {
             CreatedAt = DateTime.UtcNow
         };
     }
-    public void Update(string? name, ICollection<Song>? songs) {
+    public void Update(string? name) {
         bool updated = false;
         if (!string.IsNullOrWhiteSpace(name) && Name != name) {
             Name = name;
             updated = true;
         }
-        if (songs != null && !songs.Select(s => s.Id).ToHashSet().SetEquals(Songs.Select(s => s.Id))) {
-            Songs = songs;
-            updated = true;
-        }
         if (updated)
             UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void AddSong(Song song) {
+        if (!Songs.Any(s => s.Id == song.Id)) {
+            Songs.Add(song);
+        }
+    }
+
+    public void ChangeSpotifyReference(string spotifyId) {
+        if (string.IsNullOrWhiteSpace(spotifyId))
+            throw new ArgumentException("Spotify ID cannot be empty.");
+        SpotifyId = spotifyId;
     }
 
 }
