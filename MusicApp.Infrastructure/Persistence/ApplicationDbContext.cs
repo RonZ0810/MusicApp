@@ -4,10 +4,7 @@ using MusicApp.Domain.Entities;
 
 namespace MusicApp.Infrastructure.Persistence;
 
-public class ApplicationDbContext : DbContext, IUnitOfWork {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options) {
-    }
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options), IUnitOfWork {
 
     // 👇 These DbSets tell EF Core which entities to track
     public DbSet<User> Users => Set<User>();
