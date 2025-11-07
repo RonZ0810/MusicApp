@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MusicApp.Domain\MusicApp.Domain.csproj" />
+    <ProjectReference Include="..\MusicApp.CQRS\MusicApp.CQRS.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

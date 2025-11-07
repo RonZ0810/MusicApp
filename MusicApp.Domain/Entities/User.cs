@@ -45,10 +45,6 @@ public class User {
             DisplayName = displayName;
             updated = true;
         }
-        if (playlists != null && !playlists.Select(p => p.Id).ToHashSet().SetEquals(Playlists.Select(p => p.Id))) {
-            Playlists = playlists;
-            updated = true;
-        }
         if (updated)
             UpdatedAt = DateTime.UtcNow;
     }
@@ -57,7 +53,12 @@ public class User {
             throw new ArgumentException("Spotify ID cannot be empty.");
         SpotifyId = spotifyId;
     }
-    public void ChangeRole(UserRole role) {
-        Role = role;
+    public void ChangeRole(UserRole role) => Role = role;
+    public void AddPlaylist(Playlist playlist) => Playlists.Add(playlist);
+    public void RemovePlaylist(Guid id) {
+        var playlist = Playlists.FirstOrDefault(p => p.Id == id);
+        if (playlist != null) {
+            Playlists.Remove(playlist);
+        }
     }
 }
