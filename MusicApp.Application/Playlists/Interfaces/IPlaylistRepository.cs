@@ -9,5 +9,6 @@ public interface IPlaylistRepository {
     Task<IEnumerable<Playlist>> ListPlaylistsAsync();
     void Add(Playlist playlist);
     void Update(Playlist playlist);
+    void Delete(Guid Id);
 }
 
