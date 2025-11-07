@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -24,3 +25,21 @@ jobs:
 
       - name: Build project
         run: dotnet build --no-restore --configuration Release
+
+  cleanup:
+    # Run cleanup after the build succeeds
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ success() }}   # only run if build succeeds
+    permissions:
+      actions: write
+      contents: read
+
+    steps:
+      - name: 🧹 Delete old workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 0          # ignore age, only keep by count
+          keep_minimum_runs: 10   # keep the last 10 runs per workflow
