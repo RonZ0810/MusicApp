@@ -15,7 +15,7 @@ public class User {
     public ICollection<Playlist> Playlists { get; private set; } = new List<Playlist>();
 
     public DateTime CreatedAt { get; private set; }
-    public DateTime? UpdatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
 
     // ----- METHODS ----- //
     private User() { }
@@ -24,41 +24,37 @@ public class User {
             throw new ArgumentException("Email is required");
         if (string.IsNullOrWhiteSpace(displayName))
             throw new ArgumentException("Display name is required");
+        if (string.IsNullOrWhiteSpace(passwordHash))
+            throw new ArgumentException("Password Hash cannot be empty");
         return new User {
             Id = Guid.NewGuid(),
             Email = email,
             DisplayName = displayName,
             PasswordHash = passwordHash,
-            SpotifyId = spotifyId,
+            SpotifyId = spotifyId ?? string.Empty,
             Role = role,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
     }
-    public void Update(string? email, string? displayName, string? spotifyId, UserRole? role, ICollection<Playlist>? playlists) {
-        bool updated = false;
-        if (!string.IsNullOrWhiteSpace(email) && email != Email) {
+    public void Update(string? email, string? displayName) {
+        if (!string.IsNullOrWhiteSpace(email))
             Email = email;
-            updated = true;
-        }
-        if (!string.IsNullOrWhiteSpace(displayName) && displayName != DisplayName) {
+        if (!string.IsNullOrWhiteSpace(displayName))
             DisplayName = displayName;
-            updated = true;
-        }
-        if (updated)
-            UpdatedAt = DateTime.UtcNow;
     }
     public void ChangeSpotifyReference(string spotifyId) {
         if (string.IsNullOrWhiteSpace(spotifyId))
             throw new ArgumentException("Spotify ID cannot be empty.");
         SpotifyId = spotifyId;
     }
-    public void ChangeRole(UserRole role) => Role = role;
-    public void AddPlaylist(Playlist playlist) => Playlists.Add(playlist);
+    public void ChangeRole(UserRole role) =>  Role = role;
+    public void AddPlaylist(Playlist playlist) =>  Playlists.Add(playlist);
     public void RemovePlaylist(Guid id) {
         var playlist = Playlists.FirstOrDefault(p => p.Id == id);
-        if (playlist != null) {
+        if (playlist != null)
             Playlists.Remove(playlist);
-        }
     }
+    public void UpdateProfileImageUrl(string newURL) => ProfileImageUrl = newURL;
+    public void UpdatedAtTimestamp() =>  UpdatedAt = DateTime.UtcNow;
 }
