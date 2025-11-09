@@ -23,10 +23,13 @@ public class CreateUserHandler(IUserRepository userRepository) : ICommandHandler
             if (string.IsNullOrWhiteSpace(createUserDto.PasswordHash)) {
                 return Result.Failure<UserDto>(Error.Validation("User.Validation", "Password Hash cannot be empty."));
             }
+            if (string.IsNullOrWhiteSpace(createUserDto.PasswordSalt)) {
+                return Result.Failure<UserDto>(Error.Validation("User.Validation", "Password Salt cannot be empty."));
+            }
 
-            // To-Do: PASSWORD HASH IMPLEMENTATION HERE !!!
+            // To-Do: PASSWORD HASH + SALT IMPLEMENTATION HERE !!!
 
-            var user = User.Create(createUserDto.Email, createUserDto.DisplayName, createUserDto.PasswordHash, createUserDto.SpotifyId);
+            var user = User.Create(createUserDto.Email, createUserDto.DisplayName, createUserDto.PasswordHash, createUserDto.PasswordSalt, createUserDto.SpotifyId);
 
             _userRepository.Add(user);
 
