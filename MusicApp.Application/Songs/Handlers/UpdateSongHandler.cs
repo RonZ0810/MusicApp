@@ -2,8 +2,8 @@ using MusicApp.Application.Songs.Commands;
 using MusicApp.Application.Songs.Dtos;
 using MusicApp.Application.Songs.Extensions;
 using MusicApp.Application.Songs.Interfaces;
-using MusicApp.Cqrs.Interfaces;
 using MusicApp.Cqrs.Core;
+using MusicApp.Cqrs.Interfaces;
 
 namespace MusicApp.Application.Songs.Handlers;
 

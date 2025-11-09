@@ -2,8 +2,8 @@ using MusicApp.Application.ArtistProfiles.Dtos;
 using MusicApp.Application.ArtistProfiles.Extensions;
 using MusicApp.Application.ArtistProfiles.Interfaces;
 using MusicApp.Application.ArtistProfiles.Queries;
-using MusicApp.Cqrs.Interfaces;
 using MusicApp.Cqrs.Core;
+using MusicApp.Cqrs.Interfaces;
 
 namespace MusicApp.Application.ArtistProfiles.Handlers;
 

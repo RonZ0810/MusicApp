@@ -1,35 +1,29 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MusicApp.Infrastructure.Migrations
-{
+namespace MusicApp.Infrastructure.Migrations {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
-    {
+    public partial class InitialCreate : Migration {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(
                 name: "Albums",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Title = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
                     CoverImageUrl = table.Column<string>(type: "TEXT", maxLength: 512, nullable: true),
                     ReleaseDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     SpotifyId = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Albums", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Users",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
                     DisplayName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
@@ -40,15 +34,13 @@ namespace MusicApp.Infrastructure.Migrations
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Songs",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Title = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
                     Lyrics = table.Column<string>(type: "TEXT", nullable: true),
@@ -60,8 +52,7 @@ namespace MusicApp.Infrastructure.Migrations
                     SpotifyId = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
                     AlbumId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Songs", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Songs_Albums_AlbumId",
@@ -73,15 +64,13 @@ namespace MusicApp.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ArtistProfiles",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: true),
                     StageName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
                     SpotifyId = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_ArtistProfiles", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ArtistProfiles_Users_UserId",
@@ -93,8 +82,7 @@ namespace MusicApp.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Playlists",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -102,8 +90,7 @@ namespace MusicApp.Infrastructure.Migrations
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Playlists", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Playlists_Users_UserId",
@@ -115,13 +102,11 @@ namespace MusicApp.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AlbumArtists",
-                columns: table => new
-                {
+                columns: table => new {
                     AlbumsId = table.Column<Guid>(type: "TEXT", nullable: false),
                     ArtistsId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_AlbumArtists", x => new { x.AlbumsId, x.ArtistsId });
                     table.ForeignKey(
                         name: "FK_AlbumArtists_Albums_AlbumsId",
@@ -139,13 +124,11 @@ namespace MusicApp.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "SongArtists",
-                columns: table => new
-                {
+                columns: table => new {
                     ArtistsId = table.Column<Guid>(type: "TEXT", nullable: false),
                     SongsId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_SongArtists", x => new { x.ArtistsId, x.SongsId });
                     table.ForeignKey(
                         name: "FK_SongArtists_ArtistProfiles_ArtistsId",
@@ -163,13 +146,11 @@ namespace MusicApp.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "PlaylistSongs",
-                columns: table => new
-                {
+                columns: table => new {
                     PlaylistId = table.Column<Guid>(type: "TEXT", nullable: false),
                     SongsId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_PlaylistSongs", x => new { x.PlaylistId, x.SongsId });
                     table.ForeignKey(
                         name: "FK_PlaylistSongs_Playlists_PlaylistId",
@@ -218,8 +199,7 @@ namespace MusicApp.Infrastructure.Migrations
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "AlbumArtists");
 

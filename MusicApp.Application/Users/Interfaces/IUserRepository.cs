@@ -1,5 +1,5 @@
-using MusicApp.Domain.Entities;
 using MusicApp.Application.Interfaces;
+using MusicApp.Domain.Entities;
 namespace MusicApp.Application.Users.Interfaces;
 
 public interface IUserRepository {

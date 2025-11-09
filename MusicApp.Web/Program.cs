@@ -1,5 +1,5 @@
-using MusicApp.Infrastructure;
 using MusicApp.Application;
+using MusicApp.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

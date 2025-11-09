@@ -2,9 +2,9 @@ using MusicApp.Application.Users.Commands;
 using MusicApp.Application.Users.Dtos;
 using MusicApp.Application.Users.Extensions;
 using MusicApp.Application.Users.Interfaces;
-using MusicApp.Domain.Entities;
-using MusicApp.Cqrs.Interfaces;
 using MusicApp.Cqrs.Core;
+using MusicApp.Cqrs.Interfaces;
+using MusicApp.Domain.Entities;
 namespace MusicApp.Application.Users.Handlers;
 
 public class UpdateUserHandler(IUserRepository userRepository) : ICommandHandler<UpdateUserCommand, UserDto> {

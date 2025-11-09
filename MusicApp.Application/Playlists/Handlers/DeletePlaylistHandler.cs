@@ -1,10 +1,10 @@
+using MusicApp.Application.Playlists.Commands;
 using MusicApp.Application.Playlists.Dtos;
 using MusicApp.Application.Playlists.Extensions;
 using MusicApp.Application.Playlists.Interfaces;
 using MusicApp.Application.Playlists.Queries;
-using MusicApp.Cqrs.Interfaces;
 using MusicApp.Cqrs.Core;
-using MusicApp.Application.Playlists.Commands;
+using MusicApp.Cqrs.Interfaces;
 
 namespace MusicApp.Application.Playlists.Handlers;
 
@@ -21,7 +21,7 @@ public class DeletePlaylistHandler(IPlaylistRepository playlistRepository) : ICo
         _playlistRepository.Delete(request.Id);
 
         var success = await _playlistRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
-        
+
         return success != 0;
     }
 }

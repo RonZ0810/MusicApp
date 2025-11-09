@@ -4,10 +4,8 @@ using MusicApp.Domain.Entities;
 
 namespace MusicApp.Infrastructure.Persistence.Configurations;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
-{
-    public void Configure(EntityTypeBuilder<User> builder)
-    {
+public class UserConfiguration : IEntityTypeConfiguration<User> {
+    public void Configure(EntityTypeBuilder<User> builder) {
         builder.ToTable("Users");
 
         builder.HasKey(u => u.Id);

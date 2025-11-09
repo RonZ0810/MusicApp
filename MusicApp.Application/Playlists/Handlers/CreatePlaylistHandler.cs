@@ -3,8 +3,8 @@ using MusicApp.Application.Playlists.Dtos;
 using MusicApp.Application.Playlists.Extensions;
 using MusicApp.Application.Playlists.Interfaces;
 using MusicApp.Application.Users.Interfaces;
-using MusicApp.Cqrs.Interfaces;
 using MusicApp.Cqrs.Core;
+using MusicApp.Cqrs.Interfaces;
 using MusicApp.Domain.Entities;
 
 namespace MusicApp.Application.Playlists.Handlers;

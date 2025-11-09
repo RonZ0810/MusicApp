@@ -1,9 +1,9 @@
-using MusicApp.Cqrs.Core;
-using MusicApp.Cqrs.Interfaces;
 using MusicApp.Application.Users.Dtos;
 using MusicApp.Application.Users.Extensions;
 using MusicApp.Application.Users.Interfaces;
 using MusicApp.Application.Users.Queries;
+using MusicApp.Cqrs.Core;
+using MusicApp.Cqrs.Interfaces;
 
 namespace MusicApp.Application.Users.Handlers;
 

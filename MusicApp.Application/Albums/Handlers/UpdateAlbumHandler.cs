@@ -2,8 +2,8 @@ using MusicApp.Application.Albums.Commands;
 using MusicApp.Application.Albums.Dtos;
 using MusicApp.Application.Albums.Extensions;
 using MusicApp.Application.Albums.Interfaces;
-using MusicApp.Cqrs.Interfaces;
 using MusicApp.Cqrs.Core;
+using MusicApp.Cqrs.Interfaces;
 
 namespace MusicApp.Application.Albums.Handlers;
 

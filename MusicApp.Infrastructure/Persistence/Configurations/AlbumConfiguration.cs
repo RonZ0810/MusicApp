@@ -4,10 +4,8 @@ using MusicApp.Domain.Entities;
 
 namespace MusicApp.Infrastructure.Persistence.Configurations;
 
-public class AlbumConfiguration : IEntityTypeConfiguration<Album>
-{
-    public void Configure(EntityTypeBuilder<Album> builder)
-    {
+public class AlbumConfiguration : IEntityTypeConfiguration<Album> {
+    public void Configure(EntityTypeBuilder<Album> builder) {
         builder.ToTable("Albums");
 
         builder.HasKey(a => a.Id);

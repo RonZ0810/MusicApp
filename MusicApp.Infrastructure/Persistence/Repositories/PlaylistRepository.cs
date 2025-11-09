@@ -1,7 +1,7 @@
-using MusicApp.Application.Playlists.Interfaces;
-using MusicApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using MusicApp.Application.Interfaces;
+using MusicApp.Application.Playlists.Interfaces;
+using MusicApp.Domain.Entities;
 
 namespace MusicApp.Infrastructure.Persistence.Repositories;
 
