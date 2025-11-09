@@ -16,3 +16,4 @@ obj/
 publish/
 
 appsettings.Development.json
+*.db-*
