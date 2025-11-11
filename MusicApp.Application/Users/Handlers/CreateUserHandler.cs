@@ -5,10 +5,12 @@ using MusicApp.Application.Users.Interfaces;
 using MusicApp.Cqrs.Core;
 using MusicApp.Cqrs.Interfaces;
 using MusicApp.Domain.Entities;
+using MusicApp.Application.Security;
 namespace MusicApp.Application.Users.Handlers;
 
-public class CreateUserHandler(IUserRepository userRepository) : ICommandHandler<CreateUserCommand, UserDto> {
+public class CreateUserHandler(IUserRepository userRepository, IPasswordHasher passwordHasher) : ICommandHandler<CreateUserCommand, UserDto> {
     private readonly IUserRepository _userRepository = userRepository;
+    private readonly IPasswordHasher _passwordHasher = passwordHasher;
     public async Task<Result<UserDto>> Handle(CreateUserCommand request, CancellationToken cancellationToken) {
         try {
 
@@ -21,15 +23,21 @@ public class CreateUserHandler(IUserRepository userRepository) : ICommandHandler
                 return Result.Failure<UserDto>(Error.Validation("User.Validation", "Display Name is required."));
             }
             if (string.IsNullOrWhiteSpace(createUserDto.PasswordHash)) {
-                return Result.Failure<UserDto>(Error.Validation("User.Validation", "Password Hash cannot be empty."));
+                return Result.Failure<UserDto>(Error.Validation("User.Validation", "Password cannot be empty."));
             }
+
+            string passwordHash;
+            string passwordSalt;
             if (string.IsNullOrWhiteSpace(createUserDto.PasswordSalt)) {
-                return Result.Failure<UserDto>(Error.Validation("User.Validation", "Password Salt cannot be empty."));
+                var result = _passwordHasher.HashPassword(createUserDto.PasswordHash);
+                passwordHash = result.Hash;
+                passwordSalt = result.Salt;
+            } else {
+                passwordHash = createUserDto.PasswordHash;
+                passwordSalt = createUserDto.PasswordSalt;
             }
 
-            // To-Do: PASSWORD HASH + SALT IMPLEMENTATION HERE !!!
-
-            var user = User.Create(createUserDto.Email, createUserDto.DisplayName, createUserDto.PasswordHash, createUserDto.PasswordSalt, createUserDto.SpotifyId);
+            var user = User.Create(createUserDto.Email, createUserDto.DisplayName, passwordHash, passwordSalt, createUserDto.SpotifyId);
 
             _userRepository.Add(user);
 

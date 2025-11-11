@@ -202,6 +202,11 @@ namespace MusicApp.Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("PasswordSalt")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ProfileImageUrl")
                         .IsRequired()
                         .HasMaxLength(256)

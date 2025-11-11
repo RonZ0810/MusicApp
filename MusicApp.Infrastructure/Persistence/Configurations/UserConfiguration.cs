@@ -26,6 +26,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User> {
             .IsRequired()
             .HasMaxLength(256);
 
+        builder.Property(u => u.PasswordSalt)
+            .IsRequired()
+            .HasMaxLength(256);
+
         builder.Property(u => u.SpotifyId)
             .HasMaxLength(64);
 
