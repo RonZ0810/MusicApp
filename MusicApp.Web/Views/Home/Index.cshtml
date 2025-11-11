@@ -1,8 +1,39 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="hero d-flex align-items-center text-center" style="background-image: url('@Url.Content("~/static/LandingPageWallpaper.png")');">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Discover. Share. Play.</h1>
+        <p class="lead mt-3 mb-4">Your social hub for music fans <br> Explore artists, build communities, and see stats.</p>
+        <div class="d-flex gap-3 justify-content-center">
+            <a class="btn btn-accent btn-lg px-4" asp-controller="Explore" asp-action="Index">Explore Music</a>
+            <a class="btn btn-outline-light btn-lg px-4" asp-controller="Account" asp-action="Register">Join Free</a>
+        </div>
+    </div>
+    <div class="hero-overlay"></div>
+</section>
+
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-12 col-md-4">
+            <div class="feature-card p-4 h-100">
+                <h3 class="h5 fw-bold mb-2">Explore & Discover</h3>
+                <p class="mb-0">Dive into artists, genres, and recommendations tailored to your taste.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="feature-card p-4 h-100">
+                <h3 class="h5 fw-bold mb-2">Connect & Share</h3>
+                <p class="mb-0">Follow friends, post updates, and build communities around music.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="feature-card p-4 h-100">
+                <h3 class="h5 fw-bold mb-2">Stats & Insights</h3>
+                <p class="mb-0">View your top artists, tracks, and listening trends over time.</p>
+            </div>
+        </div>
+    </div>
 </div>
+

@@ -1,31 +1,113 @@
-html {
-  font-size: 14px;
+:root {
+  --color-primary: #1DB954; /* Spotify green */
+  --color-secondary: #6c757d;
+  --color-bg: #121212;
+  --color-bg-elevated: #242424;
+  --color-text: #ffffff;
+  --color-muted: #b3b3b3;
+  --radius-sm: 6px;
+  --radius-md: 12px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+html, body {
+  height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+               Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Top Nav */
+.topnav {
+  background-color: var(--color-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
 }
+
+.brand-text {
+  color: var(--color-text);
+  letter-spacing: 0.2px;
+}
+
+.navbar .nav-link {
+  color: var(--color-muted);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--color-text);
+}
+
+.btn-accent {
+  background-color: var(--color-primary);
+  border: none;
+  color: #000;
+}
+
+.btn-accent:hover {
+  background-color: #1aa34a; /* darker green */
+  color: #000;
+}
+
+.search-input {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid #333;
+  color: var(--color-text);
+}
+
+.dropdown-menu {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dropdown-item {
+  color: var(--color-text);
+}
+
+.dropdown-item:hover {
+  background-color: #2e2e2e;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(100% 100% at 50% 0%, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.65) 100%);
+  z-index: 1;
+}
+
+/* Feature cards */
+.feature-card {
+  background-color: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Main spacing under nav */
+main {
+  margin-top: 0.5rem;
+}
+

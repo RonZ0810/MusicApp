@@ -1,0 +1,65 @@
+@* Top navigation styled to match the project's dark theme and green accent *@
+<nav class="navbar navbar-expand-lg navbar-dark topnav">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+            <img src="~/static/logo.png" alt="PlayBoys" class="brand-logo me-2" />
+            <span class="brand-text">PlayBoys</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Explore" asp-action="Index">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Feed" asp-action="Index">Feed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Communities" asp-action="Index">Communities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Statistics" asp-action="Index">Statistics</a>
+                </li>
+            </ul>
+
+            <form class="d-flex me-3" asp-controller="Search" asp-action="Index" method="get" role="search">
+                <input class="form-control me-2 search-input" type="search" name="q" placeholder="Search music, artists..." aria-label="Search" />
+                <button class="btn btn-accent" type="submit">Search</button>
+            </form>
+
+            <ul class="navbar-nav ms-auto">
+                @if (User?.Identity?.IsAuthenticated ?? false)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @User.Identity!.Name
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" asp-controller="Profile" asp-action="Index">Profile</a></li>
+                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="Index">Settings</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li>
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="px-3 py-1">
+                                    <button type="submit" class="dropdown-item p-0">Log out</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item me-2">
+                        <a class="nav-link" asp-controller="Account" asp-action="Login">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-accent" asp-controller="Account" asp-action="Register">Sign up</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    @* Note: Ensure the image at ~/static/logo.jpg exists under wwwroot/static *@
+</nav>
+
