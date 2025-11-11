@@ -7,7 +7,7 @@ a, .btn-link {
 }
 
 .btn-primary {
-    color: #fff !important;
+    color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
@@ -253,12 +253,7 @@ h1:focus {
     }
 }
 
-@media (min-width: 1660px) {
-    .nk-header {
-        padding-left: 44px;
-        padding-right: 44px;
-    }
-}
+
 
 /* ------------------------------------------------------------------
    Global fix – match html background in dark mode to body background

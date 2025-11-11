@@ -87,16 +87,45 @@
         var _link = '.nk-menu-link, .menu-link, .nav-link',
             _currentURL = window.location.href,
             fileName = _currentURL.substring(0, (_currentURL.indexOf("#") == -1) ? _currentURL.length : _currentURL.indexOf("#")),
-            fileName = fileName.substring(0, (fileName.indexOf("?") == -1) ? fileName.length : fileName.indexOf("?"));
+            fileName = fileName.substring(0, (fileName.indexOf("?") == -1) ? fileName.length : fileName.indexOf("?")),
+            // Extract the pathname for more accurate matching
+            pathname = window.location.pathname;
 
         $(_link).each(function () {
             var self = $(this), _self_link = self.attr('href');
-            if (fileName.match(_self_link)) {
-                self.closest("li").addClass('active current-page').parents().closest("li").addClass("active current-page");
-                self.closest("li").children('.nk-menu-sub').css('display', 'block');
-                self.parents().closest("li").children('.nk-menu-sub').css('display', 'block');
+            
+            // Special case: All /forms/ pages should highlight Service Catalog
+            if (pathname.startsWith('/forms/')) {
+                if (_self_link === '/') {
+                    self.closest("li").addClass('active current-page').parents().closest("li").addClass("active current-page");
+                } else {
+                    self.closest("li").removeClass('active current-page').parents().closest("li:not(.current-page)").removeClass("active");
+                }
             } else {
-                self.closest("li").removeClass('active current-page').parents().closest("li:not(.current-page)").removeClass("active");
+                // Use exact path matching for all other pages
+                if (_self_link && pathname === _self_link) {
+                    // Clear all active states first
+                    $(_link).each(function() {
+                        $(this).closest("li").removeClass('active current-page');
+                        $(this).parents().closest("li:not(.current-page)").removeClass("active");
+                    });
+                    
+                    // Set active state for current link
+                    self.closest("li").addClass('active current-page');
+                    
+                    // Set active state for parent menu items (for submenus)
+                    self.parents().closest("li").addClass("active current-page");
+                    
+                    // Show submenus for active items
+                    self.closest("li").children('.nk-menu-sub').css('display', 'block');
+                    self.parents().closest("li").children('.nk-menu-sub').css('display', 'block');
+                } else {
+                    // Only remove active state if this link is not the current one
+                    if (!(_self_link && pathname === _self_link)) {
+                        self.closest("li").removeClass('active current-page');
+                        self.parents().closest("li:not(.current-page)").removeClass("active");
+                    }
+                }
             }
         });
     };
@@ -478,9 +507,7 @@
                     attr = (opt) ? extend(def, opt) : def;
                 attr = (auto_responsive === false) ? extend(attr, {responsive: false}) : attr;
 
-                if (!jQuery.fn.dataTable.isDataTable(this)) {
-                    $(this).DataTable(attr);
-                }
+                $(this).DataTable(attr);
                 $('.dt-export-title').text(export_title);
             });
         }
