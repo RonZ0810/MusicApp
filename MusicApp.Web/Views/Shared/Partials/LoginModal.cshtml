@@ -1,0 +1,70 @@
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+            <div class="card mb-0">
+                <div class="card-inner card-inner-lg">
+                    <div class="nk-block-head text-center mb-3">
+                        <div class="nk-block-head-content">
+                            <h4 class="nk-block-title" id="loginModalLabel">Login</h4>
+                        </div>
+                    </div>
+
+                    <form action="/demo9/index.html"  asp-controller="Account" method="post" id="loginForm">
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <label class="form-label" for="default-01">Email or Username</label>
+                            </div>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control form-control-lg" id="default-01"
+                                    placeholder="Enter your email address or username">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <label class="form-label" for="password">Password</label>
+                                <a class="link link-primary link-sm" href="/demo9/pages/auths/auth-reset-v2.html">Forgot
+                                    Password?</a>
+                            </div>
+                            <div class="form-control-wrap position-relative">
+                                <a href="#" class="form-icon form-icon-right password-switch lg" data-target="password">
+                                    <em class="password-icon icon-show icon ni ni-eye"></em>
+                                    <em class="password-icon icon-hide icon ni ni-eye-off"></em>
+                                </a>
+                                <input type="password" class="form-control form-control-lg" id="password"
+                                    placeholder="Enter your password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-accent btn-lg btn-block w-100">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="form-note-s2 text-center pt-4">
+                        New to our platform?
+                        <a href="/demo9/pages/auths/auth-register-v2.html">Create an account</a>
+                    </div>
+
+                    <div class="text-center pt-4 pb-3">
+                        <h6 class="overline-title"><span>OR</span></h6>
+                    </div>
+
+                    <ul class="nav justify-center gx-8">
+                        <a class="btn btn-light" href="#"><em class="icon ni ni-spotify"></em> Spotify</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+    });
+</script>

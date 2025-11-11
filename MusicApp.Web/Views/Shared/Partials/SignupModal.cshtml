@@ -1,0 +1,81 @@
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+            <div class="card mb-0">
+                <div class="card-inner card-inner-lg">
+                    <div class="nk-block-head text-center mb-3">
+                        <div class="nk-block-head-content">
+                            <h4 class="nk-block-title" id="signupModalLabel">Register</h4>
+                            <div class="nk-block-des">
+                                <p>Create New Account</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form asp-action="Register" asp-controller="Account" method="post" id="signupForm">
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="regName">Username</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control form-control-lg" id="registerName" name="Name" placeholder="Enter a username" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="regEmail">Email</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control form-control-lg" id="registerEmail" name="Email" placeholder="Enter your email" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="registerPassword">Passcode</label>
+                            <div class="form-control-wrap position-relative">
+                                <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="registerPassword">
+                                    <em class="passcode-icon icon-show icon ni ni-eye"></em>
+                                    <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
+                                </a>
+                                <input type="password" class="form-control form-control-lg" id="registerPassword"
+                                    name="Password" placeholder="Enter a password" required />
+                            </div>
+                            <div id="passwordStrength" class="mt-2">
+                                <div class="progress" style="height: 6px;">
+                                    <div id="passwordStrengthBar" class="progress-bar" role="progressbar"
+                                        style="width: 0%;"></div>
+                                </div>
+                                <small id="passwordStrengthText" class="form-text text-muted"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-accent btn-lg btn-block w-100">
+                                Register
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="form-note-s2 text-center pt-4">
+                        Already have an account?
+                        <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">                            <strong>Sign in instead</strong>
+                        </a>
+                    </div>
+
+                    <div class="text-center pt-4 pb-3">
+                        <h6 class="overline-title"><span>OR</span></h6>
+                    </div>
+
+                    <ul class="nav justify-center gx-8">
+                        <a class="btn btn-light" href="#"><em class="icon ni ni-spotify"></em> Spotify</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+});
+</script>

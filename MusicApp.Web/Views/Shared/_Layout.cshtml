@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@title - PlayBoys</title>
+    <title>@title</title>
 
     <!-- Bootstrap 5 (CDN). If you use local bootstrap via LibMan, replace these. -->
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
@@ -27,6 +27,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     @RenderSection("Scripts", required: false)
+    @await Html.PartialAsync("Partials/SignupModal")
+
 </body>
 </html>
 
