@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-accent btn-lg btn-block w-100">
+                            <button id="loginBtn" type="submit" class="btn btn-accent btn-lg btn-block w-100">
                                 Login
                             </button>
                         </div>
@@ -64,7 +64,14 @@
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
+    const loginBtn = document.getElementById("loginBtn");
+    loginBtn.addEventListener("click", function (event) {
+        event.preventDefault(); 
+        
+        console.log("Register button clicked!");
 
+        alert("Registration submitted!");
     });
+});
 </script>

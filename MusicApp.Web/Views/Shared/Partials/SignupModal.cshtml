@@ -12,16 +12,16 @@
                         </div>
                     </div>
 
-                    <form asp-action="Register" asp-controller="Account" method="post" id="signupForm">
+                    <form class="form-validate" id="signupForm">
                         <div class="form-group mb-3">
-                            <label class="form-label" for="regName">Username</label>
+                            <label class="form-label" for="registerName">Username</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control form-control-lg" id="registerName" name="Name" placeholder="Enter a username" required />
+                                <input type="text" class="form-control form-control-lg" id="registerName" placeholder="Enter a username" required />
                             </div>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label class="form-label" for="regEmail">Email</label>
+                            <label class="form-label" for="registerEmail">Email</label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control form-control-lg" id="registerEmail" name="Email" placeholder="Enter your email" required />
                             </div>
@@ -34,8 +34,7 @@
                                     <em class="passcode-icon icon-show icon ni ni-eye"></em>
                                     <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                                 </a>
-                                <input type="password" class="form-control form-control-lg" id="registerPassword"
-                                    name="Password" placeholder="Enter a password" required />
+                                <input type="password" class="form-control form-control-lg" id="registerPassword" placeholder="Enter a password" required />
                             </div>
                             <div id="passwordStrength" class="mt-2">
                                 <div class="progress" style="height: 6px;">
@@ -47,7 +46,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-accent btn-lg btn-block w-100">
+                            <button id="registerBtn" type="submit" class="btn btn-accent btn-lg btn-block w-100">
                                 Register
                             </button>
                         </div>
@@ -55,8 +54,8 @@
 
                     <div class="form-note-s2 text-center pt-4">
                         Already have an account?
-                        <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">                            <strong>Sign in instead</strong>
-                        </a>
+                        <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal"
+                            data-bs-target="#loginModal"><strong>Sign in instead</strong></a>
                     </div>
 
                     <div class="text-center pt-4 pb-3">
@@ -72,10 +71,30 @@
     </div>
 </div>
 
-
-
 <script>
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
+    // Username Validation
+    const usernameInput = document.getElementById("registerName");
+    usernameInput.addEventListener("input", function (event) {
+        const inputValue = event.target.value;
+        const pattern = /^[A-Za-z0-9 ]+$/;
+        emailInput.classList.toggle("error", !pattern.test(inputValue));
+    });
 
+    // Email Validation
+    const emailInput = document.getElementById("registerEmail");
+    emailInput.addEventListener("input", function (event) {
+        const inputValue = event.target.value;
+        const pattern = /^[A-Za-z0-9]+@@[A-Za-z]+\.[A-Za-z]+$/;
+        emailInput.classList.toggle("error", !pattern.test(inputValue));
+    });
+
+    // Submission Logic
+    const registerBtn = document.getElementById("registerBtn");
+    registerBtn.addEventListener("click", function (event) {
+        console.log("Register button clicked!");
+    });
 });
+
+
 </script>

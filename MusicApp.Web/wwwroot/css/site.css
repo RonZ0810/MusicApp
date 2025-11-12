@@ -1,5 +1,5 @@
 :root {
-  --color-primary: #1DB954; /* Spotify green */
+  --color-primary: #18a74a; /* Spotify green */
   --color-secondary: #6c757d;
   --color-bg: #121212;
   --color-bg-elevated: #242424;
@@ -99,15 +99,11 @@ body {
   z-index: 1;
 }
 
-/* Feature cards */
-.feature-card {
-  background-color: var(--color-bg-elevated);
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
 /* Main spacing under nav */
 main {
   margin-top: 0.5rem;
 }
 
+.form-control:focus {
+  border-color: var(--color-primary) !important;
+}
