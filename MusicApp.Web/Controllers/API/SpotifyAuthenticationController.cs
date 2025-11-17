@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 
+namespace MusicApp.Web.Controllers.Api;
 [Route("spotify/authentication")]
-public class AuthController : Controller {
+public class SpotifyAuthenticationController : Controller {
     private const string SpotifyClientIdEnvVarName = "SPOTIFY_CLIENT_ID";
-    private readonly string redirectUri = "https://localhost:5096/callback";
+    private readonly string redirectUri = "http://127.0.0.1:5096/callback";
 
     public IActionResult Spotify() {
         var clientId = Environment.GetEnvironmentVariable(SpotifyClientIdEnvVarName);
